@@ -22,7 +22,7 @@ class timemachine (
     group   => 'root',
     content => template('timemachine/netatalk.conf.erb'),
     notify  => Service[$service_netatalk],
-    require => Class['::timemachine::install'],
+    require => Package[$package_netatalk],
   }
 
   file { '/etc/netatalk/afpd.conf':
@@ -32,7 +32,7 @@ class timemachine (
     group   => 'root',
     content => template('timemachine/afpd.conf.erb'),
     notify  => Service[$service_netatalk],
-    require => Class['::timemachine::install'],
+    require => Package[$package_netatalk],
   }
 
   file { '/etc/netatalk/AppleVolumes.default':
@@ -42,7 +42,7 @@ class timemachine (
     group   => 'root',
     content => template('timemachine/AppleVolumes.default.erb'),
     notify  => Service[$service_netatalk],
-    require => Class['::timemachine::install'],
+    require => Package[$package_netatalk],
   }
 
 
