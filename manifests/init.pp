@@ -10,7 +10,7 @@ class timemachine (
   $location           = $::timemachine::params::vpn_range_v4,
 ) inherits ::timemachine::params {
 
-  require ::timemachine::install
+  class { '::timemachine::install': }
 
 
 }

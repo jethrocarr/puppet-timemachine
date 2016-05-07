@@ -42,7 +42,7 @@ class timemachine::install (
         # TODO: When Debian 9 is out, check if we can migrate to the better approach?
         command     => "bash -c 'dpkg -i /tmp/netatalk-${download_version}.deb; apt-get -y -f install'",
         require     => Exec['netatalk_package_download'],
-        before      => Package['netatalk'], # Make sure we do this manual install, before Puppet tries to
+        before      => Package[ $package_netatalk ], # Make sure we do this manual install, before Puppet tries to
         logoutput   => true,
         refreshonly => true,
       }
