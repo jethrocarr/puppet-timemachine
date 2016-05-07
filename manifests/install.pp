@@ -24,7 +24,7 @@ class timemachine::install (
 
       # Netatalk from Debian Sid
       $download_version = "2.2.5-1+b1"
-      $download_url     = "http://ftp.us.debian.org/debian/pool/main/n/netatalk/netatalk_${::download_version}_${::architecture}.deb"
+      $download_url     = "http://ftp.us.debian.org/debian/pool/main/n/netatalk/netatalk_${download_version}_${::architecture}.deb"
 
       # Download and install the software.
       exec { 'netatalk_package_download':
