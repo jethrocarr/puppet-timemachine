@@ -1,48 +1,18 @@
-# Class: timemachine
-# ===========================
-#
-# Full description of class timemachine here.
-#
-# Parameters
-# ----------
-#
-# Document parameters here.
-#
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
-#
-# Variables
-# ----------
-#
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
-#
-# Examples
-# --------
-#
-# @example
-#    class { 'timemachine':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#    }
-#
-# Authors
-# -------
-#
-# Author Name <author@domain.com>
-#
-# Copyright
-# ---------
-#
-# Copyright 2016 Your name here, unless otherwise noted.
-#
-class timemachine {
+# This class sets up a TimeCapsule-like TimeMachine network target for
+# backups from MacOS. See the README for more information and usage examples.
+
+class timemachine (
+  $package_netatalk   = $::timemachine::params::package_strongswan,
+  $service_netatalk   = $::timemachine::params::service_strongswan,
+  $manage_firewall_v4 = $::timemachine::params::manage_firewall_v4,
+  $manage_firewall_v6 = $::timemachine::params::manage_firewall_v6,
+  $volsizelimit       = $::timemachine::params::vpn_name,
+  $location           = $::timemachine::params::vpn_range_v4,
+) inherits ::timemachine::params {
+
+  require ::timemachine::install
 
 
 }
+
+# vi:smartindent:tabstop=2:shiftwidth=2:expandtab:
