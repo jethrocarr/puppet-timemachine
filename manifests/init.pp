@@ -10,7 +10,40 @@ class timemachine (
   $location           = $::timemachine::params::vpn_range_v4,
 ) inherits ::timemachine::params {
 
-  class { '::timemachine::install': }
+  # Install netatalk software
+  class { '::timemachine::install':
+  }
+
+  # Configure netatalk to act as a TimeCapsule
+  file { '/etc/default/netatalk':
+    ensure  => file,
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    content => template('timemachine/netatalk.conf.erb'),
+    notify  => Service[$service_netatalk]
+    require => Class['::timemachine::install'],
+  }
+
+  file { '/etc/netatalk/afpd.conf':
+    ensure  => file,
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    content => template('timemachine/afpd.conf.erb'),
+    notify  => Service[$service_netatalk]
+    require => Class['::timemachine::install'],
+  }
+
+  file { '/etc/netatalk/AppleVolumes.default':
+    ensure  => file,
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    content => template('timemachine/AppleVolumes.default.erb'),
+    notify  => Service[$service_netatalk]
+    require => Class['::timemachine::install'],
+  }
 
 
 }

@@ -50,8 +50,9 @@ class timemachine::install (
     }
   }
 
-
-  # Install the package
+  # Provide the OS ships the package, this is all that is needed to install
+  # netatalk. On Debian 8, this still works since we perform the evil hacks
+  # above to install the package first and then this package check works OK.
   package { $package_netatalk:
     ensure   => 'latest',
   }
