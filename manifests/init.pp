@@ -21,7 +21,7 @@ class timemachine (
     owner   => 'root',
     group   => 'root',
     content => template('timemachine/netatalk.conf.erb'),
-    notify  => Service[$service_netatalk]
+    notify  => Service[$service_netatalk],
     require => Class['::timemachine::install'],
   }
 
@@ -31,7 +31,7 @@ class timemachine (
     owner   => 'root',
     group   => 'root',
     content => template('timemachine/afpd.conf.erb'),
-    notify  => Service[$service_netatalk]
+    notify  => Service[$service_netatalk],
     require => Class['::timemachine::install'],
   }
 
@@ -41,7 +41,7 @@ class timemachine (
     owner   => 'root',
     group   => 'root',
     content => template('timemachine/AppleVolumes.default.erb'),
-    notify  => Service[$service_netatalk]
+    notify  => Service[$service_netatalk],
     require => Class['::timemachine::install'],
   }
 
