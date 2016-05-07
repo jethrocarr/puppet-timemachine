@@ -6,8 +6,8 @@ class timemachine (
   $service_netatalk   = $::timemachine::params::service_netatalk,
   $manage_firewall_v4 = $::timemachine::params::manage_firewall_v4,
   $manage_firewall_v6 = $::timemachine::params::manage_firewall_v6,
-  $volsizelimit       = $::timemachine::params::vpn_name,
-  $location           = $::timemachine::params::vpn_range_v4,
+  $volsizelimit       = $::timemachine::params::volsizelimit,
+  $location           = $::timemachine::params::location.
 ) inherits ::timemachine::params {
 
   # Install netatalk software
