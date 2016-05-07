@@ -15,6 +15,10 @@ class timemachine::install (
   # from a more recent OS version is actually bit of a PITA with Apt, since you
   # can't simply define the repo and include a single package :-(
 
+  Exec {
+    path => ['/sbin', '/bin', '/usr/sbin', '/usr/bin'],
+  }
+ 
   if ($::operatingsystem == 'Debian') {
     if ($::operatingsystemrelease =~ /^8/) {
 
