@@ -33,6 +33,7 @@ class timemachine::install (
         unless    => "dpkg -s netatalk | grep -q \"Version: ${download_version}\"", # Download new version if not already installed.
         logoutput => true,
         notify    => Exec['netatalk_package_install'],
+        before    => Package[ $package_netatalk ], # Make sure we do this manual install, before Puppet tries to
       }
 
       exec { 'netatalk_package_install':
