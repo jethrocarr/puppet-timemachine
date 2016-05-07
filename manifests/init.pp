@@ -7,7 +7,7 @@ class timemachine (
   $manage_firewall_v4 = $::timemachine::params::manage_firewall_v4,
   $manage_firewall_v6 = $::timemachine::params::manage_firewall_v6,
   $volsizelimit       = $::timemachine::params::volsizelimit,
-  $location           = $::timemachine::params::location.
+  $location           = $::timemachine::params::location,
 ) inherits ::timemachine::params {
 
   # Install netatalk software
