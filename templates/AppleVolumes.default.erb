@@ -187,7 +187,10 @@
 #~
 
 # Create a "Time Machine" share per system user.
-# TODO: Make volsizelimit optional
+<% if @volsizelimit -%>
 <%= @location -%>/$u	"Time Machine" casefold:volsizelimit:<%= @volsizelimit -%> options:upriv,usedots,tm
+<% else -%>
+<%= @location -%>/$u	"Time Machine" options:upriv,usedots,tm
+<% end -%>
 
 # End of File
