@@ -12,22 +12,22 @@ to a GNU/Linux server.
 Simply configure where to store the backups and optionally how many MB to
 limit each user's backup to.
 
-  class { 'timemachine':
-    location     => "/mnt/backup/timemachine',
-    volsizelimit => '1000000', # 1TB per user backing up
-  }
+    class { 'timemachine':
+      location     => "/mnt/backup/timemachine',
+      volsizelimit => '1000000', # 1TB per user backing up
+    }
 
 By default this module will create directories for each real user on the server
 in the configured location as well as configuring a firewall rule. These can be
 disabled if desired, eg:
 
-  class { 'timemachine':
-    location           => "/mnt/backup/timemachine',
-    volsizelimit       => '1000000', # 1TB per user backing up
-    manage_location    => false,
-    manage_firewall_v4 => false,
-    manage_firewall_v6 => false,
-  }
+    class { 'timemachine':
+      location           => "/mnt/backup/timemachine',
+      volsizelimit       => '1000000', # 1TB per user backing up
+      manage_location    => false,
+      manage_firewall_v4 => false,
+      manage_firewall_v6 => false,
+    }
 
 Refer to `manifests/params.pp` for all options and information on each one.
 
@@ -35,7 +35,8 @@ Refer to `manifests/params.pp` for all options and information on each one.
 ## Requirements
 
 Supported host operating systems:
-* Debian
+* Debian (tested on Debian 8 Stable)
+* Ubuntu (untested)
 
 Note that this module manages netatalk and will cause issues if you are also
 using netatalk for general purpose AFP shares. It is recommend that you move
