@@ -1,6 +1,6 @@
 {
   "name": "jethrocarr-timemachine",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "jethrocarr",
   "summary": "Configures a TimeMachine network share (just like a TimeCapsule) for MacOS X backups using AFP",
   "license": "Apache-2.0",
