@@ -19,7 +19,11 @@ class timemachine::params {
   $manage_firewall_v4 = true
   $manage_firewall_v6 = true
 
-  # Setup a default location for backups, but most users will want to change it
+  # If set to true, create a directory inside of $location for each real
+  # user on the server (ie non-system users)
+  $manage_location = true
+
+  # Define the default location for backups, but most users will want to change it
   # to suit their storage arrangement.
   $location = '/home/timemachine'
 

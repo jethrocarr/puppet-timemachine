@@ -17,6 +17,19 @@ limit each user's backup to.
     volsizelimit => '1000000', # 1TB per user backing up
   }
 
+By default this module will create directories for each real user on the server
+in the configured location as well as configuring a firewall rule. These can be
+disabled if desired, eg:
+
+  class { 'timemachine':
+    location           => "/mnt/backup/timemachine',
+    volsizelimit       => '1000000', # 1TB per user backing up
+    manage_location    => false,
+    manage_firewall_v4 => false,
+    manage_firewall_v6 => false,
+  }
+
+Refer to `manifests/params.pp` for all options and information on each one.
 
 
 ## Requirements
