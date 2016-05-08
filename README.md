@@ -13,7 +13,7 @@ Simply configure where to store the backups and optionally how many MB to
 limit each user's backup to.
 
     class { 'timemachine':
-      location     => "/mnt/backup/timemachine',
+      location     => '/mnt/backup/timemachine',
       volsizelimit => '1000000', # 1TB per user backing up
     }
 
@@ -22,7 +22,7 @@ in the configured location as well as configuring a firewall rule. These can be
 disabled if desired, eg:
 
     class { 'timemachine':
-      location           => "/mnt/backup/timemachine',
+      location           => '/mnt/backup/timemachine',
       volsizelimit       => '1000000', # 1TB per user backing up
       manage_location    => false,
       manage_firewall_v4 => false,
