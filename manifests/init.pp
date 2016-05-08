@@ -65,13 +65,15 @@ class timemachine (
 
     # Yes this is a pretty evil creation. Essentially we are discovering all
     # the non-system user accounts (by checking against UID_MIN) and then
-    # creating directories for them if they don't already exist. TODO: there is
-    # probably good cause to turn this into a fact.
+    # creating directories for them if they don't already exist.
+    #
+    # TODO: A smarter option would be to create a user dir fact and then use a
+    # Puppet 4 iterator to loop through each user and create a directory.
 
     exec { 'timemachine_manage_user_dirs':
       path      => "/bin:/sbin:/usr/bin:/usr/sbin",
-      command   => "getent passwd | tr \":\" \" \" | awk \"\$3 >= $(grep UID_MIN /etc/login.defs | cut -d \" \" -f 2) { print \$1 }\" | sort| uniq|sed -e 's/nobody//g' | xargs -L1 -I % sh -c 'mkdir -m 0700 -p ${location}/%; chown %:% ${location}/%'",
-      unless    => "getent passwd | tr \":\" \" \" | awk \"\$3 >= $(grep UID_MIN /etc/login.defs | cut -d \" \" -f 2) { print \$1 }\" | sort| uniq|sed -e 's/nobody//g' | xargs -L1 -I % ls -1 ${location}/% || false",
+      command   => "getent passwd | tr \":\" \" \" | awk \"\\\$3 >= $(grep UID_MIN /etc/login.defs | cut -d \" \" -f 2) { print \\\$1 }\" | sort| uniq|sed -e 's/nobody//g' | xargs -L1 -I % sh -c 'mkdir -m 0700 -p ${location}/%; chown %:% ${location}/%'",
+      unless    => "getent passwd | tr \":\" \" \" | awk \"\\\$3 >= $(grep UID_MIN /etc/login.defs | cut -d \" \" -f 2) { print \\\$1 }\" | sort| uniq|sed -e 's/nobody//g' | xargs -L1 -I % ls -1 ${location}/% || false",
       logoutput => true,
       require   => File[$location],
     }
