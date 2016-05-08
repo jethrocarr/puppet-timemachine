@@ -14,6 +14,10 @@ class timemachine (
   class { '::timemachine::install':
   }
 
+  # Define Firewall
+  class { '::timemachine::firewall':
+  }
+
   # Configure netatalk to act as a TimeCapsule
   file { '/etc/default/netatalk':
     ensure  => file,
